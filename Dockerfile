@@ -25,7 +25,6 @@ RUN echo "Setting Time Zone to: $TZ" && \
 	apk add --no-cache bash tzdata ca-certificates && \
     cp "/usr/share/zoneinfo/$TZ" /etc/localtime && \
     echo "$TZ" > /etc/timezone && \
-    apk del tzdata && \
     update-ca-certificates && \
     rm -rf /var/cache/apk/*
 
