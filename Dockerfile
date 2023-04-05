@@ -40,6 +40,8 @@ COPY image/lighttpd.conf /etc/lighttpd/
 COPY image/php-fpm.conf /etc/php$PHP_VER/php-fpm.d/www.conf
 COPY image/php.ini /etc/php$PHP_VER/
 COPY image/start.sh /usr/local/bin/
+COPY image/ioncube_loader_lin_5.6.so /usr/lib/php5/modules/
+COPY image/00-ioncube.ini /etc/php5/conf.d/
 
 RUN mkdir -p /var/log/lighttpd/ && \
     mkdir -p /var/cache/lighttpd/uploads/ && \
