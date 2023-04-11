@@ -15,4 +15,10 @@ fi
 echo "Starting PHP-FPM...."
 php-fpm -D
 echo "Starting lighttpd...."
-lighttpd -D -f /etc/lighttpd/lighttpd.conf
+#lighttpd -D -f /etc/lighttpd/lighttpd.conf
+lighttpd -f /etc/lighttpd/lighttpd.conf
+while :
+do
+	sleep 1000
+	echo -n "."
+done
