@@ -30,7 +30,7 @@ RUN echo "Setting Time Zone to: $TZ" && \
 
 RUN apk add --update --no-cache \
 	curl lighttpd \
-	php$PHP_VER-fpm php$PHP_VER-ctype php$PHP_VER-common php$PHP_VER-intl php$PHP_VER-zlib \
+	php$PHP_VER-fpm php$PHP_VER-ctype php$PHP_VER-common php$PHP_VER-intl php$PHP_VER-zlib php$PHP_VER-tokenizer \
 	php$PHP_VER-curl php$PHP_VER-gd php$PHP_VER-json php$PHP_VER-session php$PHP_VER-pdo_mysql \
 	php$PHP_VER-zip php$PHP_VER-dom php$PHP_VER-iconv php$PHP_VER-opcache php$PHP_VER-exif && \
 	echo "zend_extension = /usr/lib/php${PHP_VER}/modules/ioncube_loader_lin.so" > /etc/php$PHP_VER/conf.d/00-ioncube.ini && \
