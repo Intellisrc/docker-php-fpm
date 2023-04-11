@@ -1,6 +1,6 @@
 # About
 
-This image uses Alpine Linux (3.12) with lighttpd and php-fpm (7.3).
+This image contains IonCube in Alpine Linux (3.12) with lighttpd and php-fpm (7.3).
 
 ## Usage:
 
