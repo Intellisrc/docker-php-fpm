@@ -25,7 +25,6 @@ RUN echo "Setting Time Zone to: $TZ" && \
 	apk add --no-cache bash tzdata ca-certificates && \
     cp "/usr/share/zoneinfo/$TZ" /etc/localtime && \
     echo "$TZ" > /etc/timezone && \
-    apk del tzdata && \
     update-ca-certificates && \
     rm -rf /var/cache/apk/*
 
@@ -33,11 +32,12 @@ RUN apk add --update --no-cache \
 	curl lighttpd \
 	php$PHP_VER-fpm php$PHP_VER-ctype php$PHP_VER-common php$PHP_VER-intl \
 	php$PHP_VER-curl php$PHP_VER-gd php$PHP_VER-json php$PHP_VER-mysqli \
-	php$PHP_VER-zip php$PHP_VER-dom php$PHP_VER-iconv php$PHP_VER-opcache php$PHP_VER-exif && \
+	php$PHP_VER-zip php$PHP_VER-dom php$PHP_VER-iconv php$PHP_VER-opcache php$PHP_VER-exif \
+	php$PHP_VER-pdo_sqlite && \
 	rm -rf /var/cache/apk/*
 
 COPY image/lighttpd.conf /etc/lighttpd/
-COPY image/php-fpm.conf /etc/php$PHP_VER/php-fpm.d/www.conf
+COPY image/php-fpm.conf /etc/php$PHP_VER/php-fpm.conf
 COPY image/php.ini /etc/php$PHP_VER/
 COPY image/start.sh /usr/local/bin/
 
