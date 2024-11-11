@@ -1,3 +1,3 @@
 # docker-php-fpm-alpine
-Running PHP5 for old websites
+PHP container using FPM and lighttpd (alternative to [litespeed](https://github.com/Intellisrc/docker-litespeed-alpine))
 
