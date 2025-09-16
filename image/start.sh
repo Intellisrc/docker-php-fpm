@@ -13,6 +13,6 @@ if [[ $SITE_CHARSET != "" ]]; then
 	sed -i "s/UTF-8/$SITE_CHARSET/g" /etc/php5/php.ini
 fi
 echo "Starting PHP-FPM...."
-php-fpm -D
+php-fpm5 -D
 echo "Starting lighttpd...."
 lighttpd -D -f /etc/lighttpd/lighttpd.conf
