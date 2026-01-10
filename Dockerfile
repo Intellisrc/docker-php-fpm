@@ -1,5 +1,5 @@
 # Dockerfile for lighttpd
-FROM alpine:3.20
+FROM alpine:3.22
 EXPOSE 80
 VOLUME ["/var/www"]
 
@@ -37,8 +37,8 @@ COPY image/start.sh /usr/local/bin/
 RUN mkdir -p /var/log/lighttpd/ && \
     mkdir -p /var/cache/lighttpd/uploads/ && \
     mkdir -p /var/cache/lighttpd/compress/ && \
-	chown -R lighttpd.lighttpd /var/log/lighttpd/ && \
-	chown -R lighttpd.lighttpd /var/cache/lighttpd/ && \
+	chown -R lighttpd:lighttpd /var/log/lighttpd/ && \
+	chown -R lighttpd:lighttpd /var/cache/lighttpd/ && \
 	ln -s /usr/sbin/php-fpm$PHP_VER /usr/sbin/php-fpm && \
 	ln -s /etc/php$PHP_VER /etc/php && \
 	ln -s /usr/bin/php-fpm$PHP_VER /usr/bin/php-fpm 
