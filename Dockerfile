@@ -6,6 +6,8 @@ VOLUME ["/var/www"]
 ENV PHP_MIN_WORKERS=1
 ENV PHP_MAX_WORKERS=20
 ENV PHP_VER=83
+#LIGHTTPD_UID
+#LIGHTTPD_GID
 
 ENV TZ="Asia/Tokyo"
 ENV CUSTOM_REP="http://ftp.tsukuba.wide.ad.jp/Linux/alpine"

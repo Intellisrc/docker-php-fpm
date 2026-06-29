@@ -27,6 +27,19 @@ fi
 if [[ $PHP_FILE_UPLOADS != "" ]]; then
 	sed -i "s/max_file_uploads = 20/max_file_uploads = $PHP_FILE_UPLOADS/g" /etc/php/php.ini
 fi
+
+if [[ $LIGHTTPD_UID != "" ]]; then
+	cid=$(id -u lighttpd)
+	usermod -u $LIGHTTPD_UID lighttpd
+	find / -user $cid -exec chown -h $LIGHTTPD_UID {} \;
+fi
+if [[ $LIGHTTPD_GID != "" ]]; then
+	cgid=$(id -g lighttpd)
+	usermod -g $LIGHTTPD_GID lighttpd
+	groupmod -g $LIGHTTPD_GID lighttpd
+	find / -group $cgid -exec chgrp -h $LIGHTTPD_GID {} \;
+fi
+
 echo "Starting PHP-FPM...."
 php-fpm -D
 echo "Starting lighttpd...."
