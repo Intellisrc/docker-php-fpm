@@ -4,6 +4,9 @@ if [[ $PHP_MIN_WORKERS == "" ]]; then
 	echo "Unable to read environment"
 	exit 1
 fi
+if [[ ! -d /etc/lighttpd/lighttpd.d ]]; then
+	mkdir /etc/lighttpd/lighttpd.d/
+fi
 
 # Setting php-fpm config
 fpm_config=/etc/php/php-fpm.d/www.conf

@@ -1,27 +1,14 @@
 # Dockerfile for lighttpd
-FROM alpine:3.22
+FROM intellisrc/lighttpd:3.24
 EXPOSE 80
 VOLUME ["/var/www"]
 
 ENV PHP_MIN_WORKERS=1
 ENV PHP_MAX_WORKERS=20
-ENV PHP_VER=83
-#LIGHTTPD_UID
-#LIGHTTPD_GID
-
-ENV TZ="Asia/Tokyo"
-ENV CUSTOM_REP="http://ftp.tsukuba.wide.ad.jp/Linux/alpine"
+ENV PHP_VER=84 
+# PHP 8.5 is missing php*-opcache
 
 # -------------- OS -----------------------
-RUN echo "Setting Time Zone to: $TZ" && \
-	apk update && \
-	apk upgrade && \
-	apk add --no-cache bash tzdata ca-certificates && \
-    cp "/usr/share/zoneinfo/$TZ" /etc/localtime && \
-    echo "$TZ" > /etc/timezone && \
-    update-ca-certificates && \
-    rm -rf /var/cache/apk/*
-
 RUN apk add --update --no-cache \
 	curl lighttpd \
 	php$PHP_VER-fpm php$PHP_VER-ctype php$PHP_VER-common php$PHP_VER-intl \
@@ -37,12 +24,7 @@ COPY image/php-fpm.conf /etc/php$PHP_VER/php-fpm.d/www.conf
 COPY image/php.ini /etc/php$PHP_VER/
 COPY image/start.sh /usr/local/bin/
 
-RUN mkdir -p /var/log/lighttpd/ && \
-    mkdir -p /var/cache/lighttpd/uploads/ && \
-    mkdir -p /var/cache/lighttpd/compress/ && \
-	chown -R lighttpd:lighttpd /var/log/lighttpd/ && \
-	chown -R lighttpd:lighttpd /var/cache/lighttpd/ && \
-	ln -s /usr/sbin/php-fpm$PHP_VER /usr/sbin/php-fpm && \
+RUN	ln -s /usr/sbin/php-fpm$PHP_VER /usr/sbin/php-fpm && \
 	ln -s /etc/php$PHP_VER /etc/php && \
 	ln -s /usr/bin/php-fpm$PHP_VER /usr/bin/php-fpm 
 
